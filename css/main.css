@@ -6,19 +6,18 @@ body{
     background-color: rgb(177, 255, 229);
 }
 .slider{
-    width: 600px;
+    width: 900px;
     margin: 150px auto;
 }
 .slider__container{
     overflow: hidden;
     background-color:rgb(236, 236, 190);
-    border: 2px solid #255;
+    border: 2px solid rgb(177, 177, 177);
 }
 .slider__track{
     display: flex;
     background-color: blanchedalmond;
     transition: .2s;
-    border: 2px solid rgb(165, 241, 241);
 }
 .slider__title{
     text-align: center;
@@ -27,8 +26,8 @@ body{
     color: rgb(112, 114, 20);
 }
 .slider__item{
-    height: 100px;
-    min-width: 200px;
+    height: 200px;
+    min-width: 300px;
 }
 .slider__item:nth-child(3n+1){
     background-color: rgb(255, 0, 0);

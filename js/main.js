@@ -1,23 +1,21 @@
-$(document).ready(function() {
     let position = 0;
-    const slidesToShow = 2;
-    const slidesToScroll = 2;
-    const container = $('.slider__container');
-    const track = $('.slider__track');
-    const item = $('.slider__item');
-    const btnPrev = $('.btn__prev');
-    const btnNext = $('.btn__next');
-    const itemsCount = item.length;
-    const itemWidth = container.width() / slidesToShow;
+    const slidesToShow = 3;
+    const slidesToScroll = 1;
+    const container = document.querySelector('.slider__container');
+    const track = document.querySelector('.slider__track');
+    //const item = document.querySelector('.slider__item');
+    const btnPrev = document.querySelector('.btn__prev');
+    const btnNext = document.querySelector('.btn__next');
+    const items = document.querySelectorAll('.slider__item');
+    const itemsCount = items.length;
+    const itemWidth = container.clientWidth / slidesToShow;
     const movePosition = slidesToScroll * itemWidth;
 
-    item.each(function (index, item) {
-        $(item).css({
-            minWidth: itemWidth,
-        });
+    items.forEach((item) => {
+        item.style.minWidth = `${itemWidth}px`;
     });
-
-    btnNext.click(function(){
+    
+    btnNext.addEventListener('click', () => {
         const itemsLeft = itemsCount - (Math.abs(position) + slidesToShow * itemWidth) / itemWidth;
 
         position -= itemsLeft >= slidesToScroll ? movePosition : itemsLeft * itemWidth;
@@ -26,7 +24,7 @@ $(document).ready(function() {
         checkBtns();
     });
 
-    btnPrev.click(function(){
+    btnPrev.addEventListener('click', () => {
         const itemsLeft = Math.abs(position) / itemWidth;
 
         position += itemsLeft >= slidesToScroll ? movePosition : itemsLeft * itemWidth;
@@ -36,18 +34,12 @@ $(document).ready(function() {
     });
 
     const setPosition = () => {
-        track.css({
-            transform: `translateX(${position}px)`
-        });
+        track.style.transform = `translateX(${position}px)`
     };
 
     const checkBtns = () => {
-        btnPrev.prop('disabled', position === 0);
-        btnNext.prop(
-            'disabled', 
-            position <= -(itemsCount - slidesToShow) * itemWidth
-            );
+        btnPrev.disabled = position === 0;
+        btnNext.disabled = position <= -(itemsCount - slidesToShow) * itemWidth;
     };
  
     checkBtns();
-});
